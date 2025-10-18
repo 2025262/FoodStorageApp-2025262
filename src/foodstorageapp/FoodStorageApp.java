@@ -55,6 +55,42 @@ class Storage {
     }
 }
 
+//add food method
+    public void addFood(Food food) {
+        if (useOppositeDoor) {
+            if (rear == CAPACITY - 1) {
+                System.out.println("❌ Storage is full. Cannot add more foods.");
+                return;
+            }
+            if (front == -1 && rear == -1) {
+                front = 0;
+                rear = 0;
+            } else {
+                rear++;
+            }
+            foods[rear] = food;
+            System.out.println("✅ Added to storage (FIFO): " + food);
+
+//alert when reach the maximum capacity
+            if (rear == CAPACITY - 1) {
+                System.out.println("⚠️ Warning: Storage is now FULL (" + CAPACITY + "/" + CAPACITY + " items).");
+            }
+
+        } else {
+            if (top == CAPACITY - 1) {
+                System.out.println("❌ Storage is full. Cannot add more foods.");
+                return;
+            }
+            foods[++top] = food;
+            System.out.println("✅ Added to storage (LIFO): " + food);
+
+//alert when reach the maximum capacity
+            if (top == CAPACITY - 1) {
+                System.out.println("⚠️ Warning: Storage is now FULL (" + CAPACITY + "/" + CAPACITY + " items).");
+            }
+        }
+    }
+
 public class FoodStorageApp {
 
     /**
@@ -63,5 +99,6 @@ public class FoodStorageApp {
     public static void main(String[] args) {
         // TODO code application logic here
     }
+    
     
 }
