@@ -53,7 +53,6 @@ class Storage {
         this.front = -1;
         this.rear = -1;
     }
-}
 
 //add food method
     public void addFood(Food food) {
@@ -155,6 +154,42 @@ public void peekFood() {
             }
         }
     }
+
+//search food method by name
+public void searchFood(String name) {
+        boolean found = false;
+        System.out.println("Searching for food: '" + name + "'...");
+
+        if (useOppositeDoor) { // FIFO
+            if (front == -1 && rear == -1) {
+                System.out.println("Storage is empty. Nothing to search.");
+                return;
+            }
+            for (int i = front; i <= rear; i++) {
+                if (foods[i] != null && foods[i].getName().equalsIgnoreCase(name)) {
+                    System.out.println("✅ Found (FIFO): " + foods[i]);
+                    found = true;
+                }
+            }
+        } else { // LIFO
+            if (top == -1) {
+                System.out.println("Storage is empty. Nothing to search.");
+                return;
+            }
+            for (int i = 0; i <= top; i++) {
+                if (foods[i] != null && foods[i].getName().equalsIgnoreCase(name)) {
+                    System.out.println("✅ Found (LIFO): " + foods[i]);
+                    found = true;
+                }
+            }
+        }
+        
+
+        if (!found) {
+            System.out.println("❌ No food found with the name: " + name);
+        }
+    }
+}
 
 public class FoodStorageApp {
 
