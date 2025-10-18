@@ -139,6 +139,23 @@ public void showFoods() {
         }
     }
 
+//peek food method
+public void peekFood() {
+        if (useOppositeDoor) {
+            if (front == -1) {
+                System.out.println("Storage is empty.");
+            } else {
+                System.out.println("Front food (FIFO): " + foods[front]);
+            }
+        } else {
+            if (top == -1) {
+                System.out.println("Storage is empty.");
+            } else {
+                System.out.println("Top food (LIFO): " + foods[top]);
+            }
+        }
+    }
+
 public class FoodStorageApp {
 
     /**
