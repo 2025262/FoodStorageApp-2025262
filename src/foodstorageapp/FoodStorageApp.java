@@ -116,6 +116,29 @@ public void removeFood() {
         }
     }
 
+//show food method
+public void showFoods() {
+        if (useOppositeDoor) {
+            if (front == -1 && rear == -1) {
+                System.out.println("Storage is empty.");
+                return;
+            }
+            System.out.println("Foods in storage (FIFO):");
+            for (int i = front; i <= rear; i++) {
+                System.out.println("  " + foods[i]);
+            }
+        } else {
+            if (top == -1) {
+                System.out.println("Storage is empty.");
+                return;
+            }
+            System.out.println("Foods in storage (LIFO):");
+            for (int i = 0; i <= top; i++) {
+                System.out.println("  " + foods[i]);
+            }
+        }
+    }
+
 public class FoodStorageApp {
 
     /**
