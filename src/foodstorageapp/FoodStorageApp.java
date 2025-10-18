@@ -36,6 +36,25 @@ class Food {
     }
 }
 
+//storage class
+class Storage {
+    private Food[] foods;
+    private final int CAPACITY = 8;
+
+    private int top;
+    private int front;
+    private int rear;
+    private boolean useOppositeDoor; // true = FIFO, false = LIFO
+
+    public Storage(boolean useOppositeDoor) {
+        this.foods = new Food[CAPACITY];
+        this.useOppositeDoor = useOppositeDoor;
+        this.top = -1;
+        this.front = -1;
+        this.rear = -1;
+    }
+}
+
 public class FoodStorageApp {
 
     /**
