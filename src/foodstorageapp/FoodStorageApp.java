@@ -91,6 +91,31 @@ class Storage {
         }
     }
 
+//remove food method
+public void removeFood() {
+        if (useOppositeDoor) {
+            if (front == -1 && rear == -1) {
+                System.out.println("Storage is empty. Nothing to remove.");
+                return;
+            }
+            Food removed = foods[front];
+            if (front == rear) {
+                front = -1;
+                rear = -1;
+            } else {
+                front++;
+            }
+            System.out.println("Removed from storage (FIFO): " + removed);
+        } else {
+            if (top == -1) {
+                System.out.println("Storage is empty. Nothing to remove.");
+                return;
+            }
+            Food removed = foods[top--];
+            System.out.println("Removed from storage (LIFO): " + removed);
+        }
+    }
+
 public class FoodStorageApp {
 
     /**
