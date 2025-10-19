@@ -11,6 +11,8 @@ package foodstorageapp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Scanner;
+
 
 //class to declare food information
 class Food {
@@ -58,7 +60,7 @@ class Storage {
     public void addFood(Food food) {
         if (useOppositeDoor) {
             if (rear == CAPACITY - 1) {
-                System.out.println("❌ Storage is full. Cannot add more foods.");
+                System.out.println("Storage is full. Cannot add more foods.");
                 return;
             }
             if (front == -1 && rear == -1) {
@@ -68,7 +70,7 @@ class Storage {
                 rear++;
             }
             foods[rear] = food;
-            System.out.println("✅ Added to storage (FIFO): " + food);
+            System.out.println("Added to storage (FIFO): " + food);
 
 //alert when reach the maximum capacity
             if (rear == CAPACITY - 1) {
@@ -77,11 +79,11 @@ class Storage {
 
         } else {
             if (top == CAPACITY - 1) {
-                System.out.println("❌ Storage is full. Cannot add more foods.");
+                System.out.println("Storage is full. Cannot add more foods.");
                 return;
             }
             foods[++top] = food;
-            System.out.println("✅ Added to storage (LIFO): " + food);
+            System.out.println("Added to storage (LIFO): " + food);
 
 //alert when reach the maximum capacity
             if (top == CAPACITY - 1) {
@@ -167,7 +169,7 @@ public void searchFood(String name) {
             }
             for (int i = front; i <= rear; i++) {
                 if (foods[i] != null && foods[i].getName().equalsIgnoreCase(name)) {
-                    System.out.println("✅ Found (FIFO): " + foods[i]);
+                    System.out.println("Found (FIFO): " + foods[i]);
                     found = true;
                 }
             }
@@ -178,7 +180,7 @@ public void searchFood(String name) {
             }
             for (int i = 0; i <= top; i++) {
                 if (foods[i] != null && foods[i].getName().equalsIgnoreCase(name)) {
-                    System.out.println("✅ Found (LIFO): " + foods[i]);
+                    System.out.println("Found (LIFO): " + foods[i]);
                     found = true;
                 }
             }
@@ -186,18 +188,40 @@ public void searchFood(String name) {
         
 
         if (!found) {
-            System.out.println("❌ No food found with the name: " + name);
+            System.out.println("No food found with the name: " + name);
         }
     }
 }
 
+
+//menu to select options
 public class FoodStorageApp {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Scanner scanner = new Scanner(System.in);
+
+        int modeChoice = 0;
+        while (true) {
+            try {
+                System.out.println("Choose storage mode:");
+                System.out.println("1. Use only front door (LIFO stack)");
+                System.out.println("2. Use front + opposite door (FIFO queue)");
+                System.out.print("Enter your choice: ");
+                modeChoice = Integer.parseInt(scanner.nextLine());
+                if (modeChoice == 1 || modeChoice == 2) break;
+                System.out.println("Invalid option. Please enter 1 or 2.");
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+            }
+        }
+
+        boolean useOppositeDoor = (modeChoice == 2);
+        Storage storage = new Storage(useOppositeDoor);
+        
+        
     }
     
     
