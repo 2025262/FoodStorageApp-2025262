@@ -9,6 +9,12 @@ package foodstorageapp;
  * @author Gabriela Richardz Nunes - 2025262
  */
 
+/*
+ * Declaration of AI Use:
+ * This project received assistance from ChatGPT to review logic and structure.
+ * All code was written, tested, and understood by the student.
+ */
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Scanner;
@@ -194,12 +200,9 @@ public void searchFood(String name) {
 }
 
 
-//menu to select options
+//menu to select FIFO or LIFO
 public class FoodStorageApp {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -221,8 +224,89 @@ public class FoodStorageApp {
         boolean useOppositeDoor = (modeChoice == 2);
         Storage storage = new Storage(useOppositeDoor);
         
+//interactive menu - User can: add/remove/show/peek/search/exit food.
         
+            while (true) {
+            System.out.println("\nConfectioner Storage Menu:");
+            System.out.println("1. Add Food");
+            System.out.println("2. Remove Food");
+            System.out.println("3. Show Foods");
+            System.out.println("4. Peek Food");
+            System.out.println("5. Search Food");
+            System.out.println("6. Exit");
+            System.out.print("Enter your choice: ");
+
+            int choice;
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                continue;
+            }
+
+            switch (choice) {
+                case 1:
+                    String name;
+                    int weight;
+
+                    do {
+                        System.out.print("Enter food name: ");
+                        name = scanner.nextLine().trim();
+                        if (name.isEmpty()) {
+                            System.out.println("Food name cannot be empty. Try again.");
+                        }
+                    } while (name.isEmpty());
+
+                    while (true) {
+                        System.out.print("Enter food weight (grams): ");
+                        try {
+                            weight = Integer.parseInt(scanner.nextLine());
+                            if (weight <= 0) {
+                                System.out.println("Weight must be positive. Try again.");
+                                continue;
+                            }
+                            break;
+                        } catch (NumberFormatException e) {
+                            System.out.println("Please enter a valid number for weight.");
+                        }
+                    }
+
+                    storage.addFood(new Food(name, weight));
+                    break;
+
+                case 2:
+                    storage.removeFood();
+                    break;
+
+                case 3:
+                    storage.showFoods();
+                    break;
+
+                case 4:
+                    storage.peekFood();
+                    break;
+
+                case 5:
+                    System.out.print("Enter food name to search: ");
+                    String searchName = scanner.nextLine().trim();
+                    if (!searchName.isEmpty()) {
+                        storage.searchFood(searchName);
+                    } else {
+                        System.out.println("Food name cannot be empty.");
+                    }
+                    break;
+
+                case 6:
+                    System.out.println("Exiting program.");
+                    scanner.close();
+                    return;
+
+                default:
+                    System.out.println("Invalid choice. Try again.");
+            }
+        }
     }
-    
-    
 }
+    
+    
+
