@@ -9,11 +9,6 @@ package foodstorageapp;
  * @author Gabriela Richardz Nunes - 2025262
  */
 
-/*
- * Declaration of AI Use:
- * This project received assistance from ChatGPT to review logic and structure.
- * All code was written, tested, and understood by the student.
- */
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -80,7 +75,7 @@ class Storage {
 
 //alert when reach the maximum capacity
             if (rear == CAPACITY - 1) {
-                System.out.println("⚠️ Warning: Storage is now FULL (" + CAPACITY + "/" + CAPACITY + " items).");
+                System.out.println("Warning: Storage is now FULL (" + CAPACITY + "/" + CAPACITY + " items).");
             }
 
         } else {
@@ -93,7 +88,7 @@ class Storage {
 
 //alert when reach the maximum capacity
             if (top == CAPACITY - 1) {
-                System.out.println("⚠️ Warning: Storage is now FULL (" + CAPACITY + "/" + CAPACITY + " items).");
+                System.out.println("Warning: Storage is now FULL (" + CAPACITY + "/" + CAPACITY + " items).");
             }
         }
     }
@@ -227,7 +222,7 @@ public class FoodStorageApp {
 //interactive menu - User can: add/remove/show/peek/search/exit food.
         
             while (true) {
-            System.out.println("\nConfectioner Storage Menu:");
+            System.out.println("\nFast Food Storage Menu:");
             System.out.println("1. Add Food");
             System.out.println("2. Remove Food");
             System.out.println("3. Show Foods");
@@ -308,5 +303,10 @@ public class FoodStorageApp {
     }
 }
     
+/*
+ * Declaration of AI Use:
+ * This project received assistance from ChatGPT to review logic and structure.
+ * All code was written, tested, and understood by the student.
+ */
     
 
